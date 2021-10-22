@@ -6,9 +6,8 @@ public class RequestParser {
 
     private String params;
 
-    public RequestParser(String params) throws ParseException {
-        this.params = params;
-        sendRequest(params);
+    public RequestParser()  {
+
     }
 
     public void sendRequest(String params) throws ParseException {     //распределение запросов и отправление в ПерсонСервис
@@ -16,16 +15,20 @@ public class RequestParser {
 
         switch (paramsArr[0]) {
             case ("create"):
-                PersonService.getInstance().createPerson(paramsArr);
+                PersonService.getInstance().createPerson(new RequestDto(paramsArr).createUpdateDto());
                 break;
             case ("update"):
-                PersonService.getInstance().updatePerson(paramsArr);
+                PersonService.getInstance().updatePerson(new RequestDto(paramsArr).createUpdateDto());
                 break;
             case ("delete"):
-                PersonService.getInstance().deletePerson(paramsArr);
+                for (int i = 1; i < paramsArr.length; i++) {
+                    PersonService.getInstance().deletePerson(RequestDto.deleteDto(paramsArr[i]));
+                }
                 break;
             case("read"):
-                PersonService.getInstance().readPerson(paramsArr);
+                for (int i = 1; i < paramsArr.length; i++) {
+                    PersonService.getInstance().readPerson(RequestDto.readDto(paramsArr[i]));
+                }
                 break;
             default:
                 System.out.println("Wrong command, check source file.");

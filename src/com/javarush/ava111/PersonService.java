@@ -22,45 +22,39 @@ public class PersonService {
         return INSTANCE;
     }
 
-    public void createPerson(String[] paramsArr) throws ParseException {
+    public void createPerson(CreateUpdateDto dto) throws ParseException {
         Person person = new Person();
-        person.setName(paramsArr[1]);
-        person.setAge(Integer.parseInt(paramsArr[2]));
-        person.setPassportSeries(paramsArr[3]);
-        person.setPassportNumber(paramsArr[4]);
-        person.setPassportIssueDate(Person.formatter.parse(paramsArr[5]));
-        person.setCity(paramsArr[6]);
+        person.setName(dto.getName());
+        person.setAge(dto.getAge());
+        person.setPassportSeries(dto.getPassportSeries());
+        person.setPassportNumber(dto.getPassportNumber());
+        person.setPassportIssueDate(dto.getPassportIssueDate());
+        person.setCity(dto.getCity());
 
         repository.put(person.getName(),person);
 
 
     }
 
-    public void updatePerson(String[] paramsArr) throws ParseException {
+    public void updatePerson(CreateUpdateDto dto) throws ParseException {
         Person person = new Person();
-        person.setName(paramsArr[1]);
-        person.setAge(Integer.parseInt(paramsArr[2]));
-        person.setPassportSeries(paramsArr[3]);
-        person.setPassportNumber(paramsArr[4]);
-        person.setPassportIssueDate(Person.formatter.parse(paramsArr[5]));
-        person.setCity(paramsArr[6]);
+        person.setName(dto.getName());
+        person.setAge(dto.getAge());
+        person.setPassportSeries(dto.getPassportSeries());
+        person.setPassportNumber(dto.getPassportNumber());
+        person.setPassportIssueDate(dto.getPassportIssueDate());
+        person.setCity(dto.getCity());
 
-        repository.remove(person.getName());
         repository.put(person.getName(),person);
+
     }
 
-    public void deletePerson(String[] paramsArr) {
-        for (String i : paramsArr) {
-            if (!i.equals("delete"))
-                repository.remove(i);
-        }
+    public void deletePerson(DeleteDto dto) {
+        repository.remove(dto.getName());
     }
 
-    public void readPerson(String[] paramsArr) {
-        for (String i : paramsArr) {
-            if (!i.equals("read"))
-                System.out.println(repository.get(i));
-        }
+    public void readPerson(ReadDto readDto) {
+        System.out.println(repository.get(readDto.getName()));
     }
 
     public void printPersons() {

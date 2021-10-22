@@ -4,10 +4,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import static com.javarush.ava111.ApplicationSettings.*;
+
+import static com.javarush.ava111.Uitl.*;
+
 public class Person {
 
-    static SimpleDateFormat formatter = new SimpleDateFormat(DATE_PATTERN);
+
 
     private String name;
     private int age;

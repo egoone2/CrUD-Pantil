@@ -9,19 +9,23 @@ public class Solution {
 
 
 
-    static SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy");
+    static SimpleDateFormat formatter = new SimpleDateFormat(DATE_PATTERN);
 
-    public static void main(String[] args) throws IOException, ParseException {
-        FileReader fileReader;
+    public static void main(String[] args)  {
+
         String line;
-        try(BufferedReader reader = new BufferedReader(fileReader = new FileReader(FILE_PATH))) {
+        RequestParser requestParser = new RequestParser();
+        try(FileReader fileReader = new FileReader(FILE_PATH);
+            BufferedReader reader = new BufferedReader(fileReader)) {
             while (reader.ready()) {
-                RequestParser rp = new RequestParser(reader.readLine());
+                requestParser.sendRequest(reader.readLine());
             }
+        }
+        catch (IOException | ParseException e ) {
+            e.printStackTrace();
         }
 
 //        PersonService.getInstance().printPersons();
-        fileReader.close();
 
     }
 
