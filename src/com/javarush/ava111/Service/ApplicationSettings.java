@@ -1,4 +1,4 @@
-package com.javarush.ava111;
+package com.javarush.ava111.Service;
 
 public class ApplicationSettings {
     public static final String FILE_PATH = "C:\\Users\\whale\\OneDrive\\Рабочий стол\\Флешка\\Source.txt";

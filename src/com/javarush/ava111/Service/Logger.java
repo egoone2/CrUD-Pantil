@@ -1,6 +1,4 @@
-package com.javarush.ava111;
-
-import java.util.function.LongFunction;
+package com.javarush.ava111.Service;
 
 public class Logger {
 
@@ -14,6 +12,8 @@ public class Logger {
         }
         return INSTANCE;
     }
+
+
 
 
 }

@@ -1,6 +1,10 @@
-package com.javarush.ava111;
+package com.javarush.ava111.Dto;
 
-public class ReadDto {
+
+
+
+
+public class DeleteDto{
     private String name;
 
     public String getName() {
@@ -10,4 +14,8 @@ public class ReadDto {
     public void setName(String name) {
         this.name = name;
     }
+
+
+
+
 }

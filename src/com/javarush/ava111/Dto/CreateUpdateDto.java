@@ -1,8 +1,10 @@
-package com.javarush.ava111;
+package com.javarush.ava111.Dto;
+
+
 
 import java.util.Date;
 
-public class CreateUpdateDto {
+public class CreateUpdateDto{
 
     private String name;
     private int age;

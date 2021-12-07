@@ -1,6 +1,10 @@
-package com.javarush.ava111;
+package com.javarush.ava111.Dto;
 
-public class DeleteDto {
+
+
+import java.util.Date;
+
+public class ReadDto {
     private String name;
 
     public String getName() {

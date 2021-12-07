@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 
-import static com.javarush.ava111.ApplicationSettings.*;
+import static com.javarush.ava111.Service.ApplicationSettings.*;
 public class Solution {
 
 

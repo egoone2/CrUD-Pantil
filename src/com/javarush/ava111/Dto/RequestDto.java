@@ -1,8 +1,8 @@
-package com.javarush.ava111;
+package com.javarush.ava111.Dto;
 
 import java.text.ParseException;
-import java.util.Date;
-import static com.javarush.ava111.Uitl.*;
+
+import static com.javarush.ava111.Service.Util.*;
 
 public class RequestDto {
 

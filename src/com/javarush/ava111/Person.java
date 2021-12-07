@@ -1,11 +1,9 @@
 package com.javarush.ava111;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 
-import static com.javarush.ava111.Uitl.*;
+import static com.javarush.ava111.Service.Util.*;
 
 public class Person {
 
