@@ -1,6 +1,6 @@
 package com.javarush.ava111;
 
-import com.javarush.ava111.Dto.RequestDto;
+import com.javarush.ava111.Service.RequestDto;
 import com.javarush.ava111.Service.PersonService;
 
 import java.text.ParseException;
@@ -14,15 +14,15 @@ public class RequestParser {
 
     }
 
-    public void sendRequest(String params) throws ParseException {     //распределение запросов и отправление в ПерсонСервис
+    public void sendRequest(String params) throws ParseException {     //распределение запросов и отправka в ПерсонСервис
         String[] paramsArr = params.split("\t");
 
         switch (paramsArr[0]) {
             case ("create"):
-                PersonService.getInstance().createPerson(new RequestDto(paramsArr).createUpdateDto());
+                PersonService.getInstance().createPerson(new RequestDto(paramsArr).createDto());
                 break;
             case ("update"):
-                PersonService.getInstance().updatePerson(new RequestDto(paramsArr).createUpdateDto());
+                PersonService.getInstance().updatePerson(new RequestDto(paramsArr).updateDto());
                 break;
             case ("delete"):
                 for (int i = 1; i < paramsArr.length; i++) {

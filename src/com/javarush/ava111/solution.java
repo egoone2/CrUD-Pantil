@@ -1,15 +1,18 @@
 package com.javarush.ava111;
+import com.javarush.ava111.Service.PersonService;
+
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 
 import static com.javarush.ava111.Service.ApplicationSettings.*;
+
 public class Solution {
 
 
 
-    static SimpleDateFormat formatter = new SimpleDateFormat(DATE_PATTERN);
+    
 
     public static void main(String[] args)  {
 

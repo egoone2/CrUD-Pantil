@@ -1,10 +1,9 @@
 package com.javarush.ava111.Service;
 
-import com.javarush.ava111.Dto.CreateUpdateDto;
-import com.javarush.ava111.Dto.DeleteDto;
-import com.javarush.ava111.Dto.ReadDto;
+import com.javarush.ava111.Dto.*;
 import com.javarush.ava111.Person;
 
+import java.io.FileWriter;
 import java.text.ParseException;
 import java.util.HashMap;
 
@@ -13,7 +12,7 @@ public class PersonService {
 
     private static PersonService INSTANCE;
 
-    private HashMap<String, Person> repository = new HashMap<>();
+    private HashMap<Integer, Person> repository = new HashMap<>();
 
     private PersonService() {
 
@@ -27,39 +26,45 @@ public class PersonService {
         return INSTANCE;
     }
 
-    public void createPerson(CreateUpdateDto dto) throws ParseException {
-        Person person = new Person();
+    public void createPerson(CreateDto dto) throws ParseException {
+        Person person = new Person(dto.getID());
         person.setName(dto.getName());
         person.setAge(dto.getAge());
-        person.setPassportSeries(dto.getPassportSeries());
-        person.setPassportNumber(dto.getPassportNumber());
-        person.setPassportIssueDate(dto.getPassportIssueDate());
+        person.setPassport(dto.getPassportNumber(), dto.getPassportSeries(), dto.getPassportIssueDate());
         person.setCity(dto.getCity());
 
-        repository.put(person.getName(),person);
+        repository.put(person.getID(),person);
 
 
     }
 
-    public void updatePerson(CreateUpdateDto dto) throws ParseException {
-        Person person = new Person();
+    public void updatePerson(UpdateDto dto) throws ParseException {
+        Person person = repository.get(dto.getID());
         person.setName(dto.getName());
         person.setAge(dto.getAge());
-        person.setPassportSeries(dto.getPassportSeries());
-        person.setPassportNumber(dto.getPassportNumber());
-        person.setPassportIssueDate(dto.getPassportIssueDate());
+        person.setPassport(dto.getPassportNumber(), dto.getPassportSeries(), dto.getPassportIssueDate());
         person.setCity(dto.getCity());
 
-        repository.put(person.getName(),person);
+        repository.put(dto.getID(),person);
 
     }
 
     public void deletePerson(DeleteDto dto) {
-        repository.remove(dto.getName());
+        try {
+        repository.remove(dto.getID()); }
+        catch (Exception e) {
+            System.out.println("Wrong person ID");
+        }
     }
 
     public void readPerson(ReadDto readDto) {
-        System.out.println(repository.get(readDto.getName()));
+        try(FileWriter fileWriter = new FileWriter(ApplicationSettings.OUTPUT_FILE_PATH)) {
+            String line = repository.get(readDto.getID()).toString();
+            fileWriter.write(line);
+            System.out.println(line); }
+        catch (Exception e) {
+            System.out.println("Wrong person ID");
+        }
     }
 
     public void printPersons() {
