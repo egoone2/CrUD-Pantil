@@ -2,11 +2,12 @@ package com.javarush.ava111;
 
 import com.javarush.ava111.Service.RequestDto;
 import com.javarush.ava111.Service.PersonService;
+import com.javarush.ava111.Service.RequestParserMbean;
 
 import java.text.ParseException;
 
 
-public class RequestParser {
+public class RequestParser implements RequestParserMbean {
 
     private String params;
 

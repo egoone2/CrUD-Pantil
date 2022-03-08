@@ -6,12 +6,14 @@ import com.javarush.ava111.Dto.ReadDto;
 import com.javarush.ava111.Dto.UpdateDto;
 
 import java.text.ParseException;
+import java.util.logging.Logger;
 
 import static com.javarush.ava111.Service.Util.*;
 
 public class RequestDto {
+    private static Logger logger = Logger.getLogger(RequestDto.class.getName());
 
-   private String[] params;
+   private final String[] params;
 
    public  RequestDto(String[] params) {
        this.params = params;

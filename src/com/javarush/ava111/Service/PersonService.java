@@ -3,13 +3,18 @@ package com.javarush.ava111.Service;
 import com.javarush.ava111.Dto.*;
 import com.javarush.ava111.Person;
 
+
+import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.text.ParseException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
-public class PersonService {
+public class PersonService implements PersonServiceMBean{
 
+    private static Logger logger = Logger.getLogger(PersonService.class.getName());
     private static PersonService INSTANCE;
 
     private HashMap<Integer, Person> repository = new HashMap<>();
@@ -35,7 +40,7 @@ public class PersonService {
 
         repository.put(person.getID(),person);
 
-
+        logger.info("created person " + person);
     }
 
     public void updatePerson(UpdateDto dto) throws ParseException {
@@ -47,27 +52,39 @@ public class PersonService {
 
         repository.put(dto.getID(),person);
 
+        logger.info("updated person " + person);
     }
 
     public void deletePerson(DeleteDto dto) {
-        try {
-        repository.remove(dto.getID()); }
-        catch (Exception e) {
-            System.out.println("Wrong person ID");
-        }
+            Person person = repository.get(dto.getID());
+            if (person != null) {
+                repository.remove(dto.getID());
+                logger.info("deleted person " + person);
+            }
+            else logger.log(Level.OFF,"invalid person ID");
+
+
+
     }
 
     public void readPerson(ReadDto readDto) {
-        try(FileWriter fileWriter = new FileWriter(ApplicationSettings.OUTPUT_FILE_PATH)) {
+        try(BufferedWriter writer = new BufferedWriter(new FileWriter(ApplicationSettings.OUTPUT_FILE_PATH))) {
             String line = repository.get(readDto.getID()).toString();
-            fileWriter.write(line);
+            writer.write(line);
+            writer.flush();
             System.out.println(line); }
         catch (Exception e) {
             System.out.println("Wrong person ID");
         }
     }
 
+    @Override
     public void printPersons() {
         repository.forEach((name, person) -> System.out.println(person));
     }
+    @Override
+    public int personsAmount() {
+        return repository.size();
+    }
+
 }
