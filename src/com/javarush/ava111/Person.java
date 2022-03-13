@@ -12,8 +12,7 @@ import static com.javarush.ava111.Service.ApplicationSettings.*;
 
 public class Person {
 
-
-
+    private static int INC_ID = 0;
     private String name;
     private int age;
     private Passport passport;
@@ -21,8 +20,8 @@ public class Person {
     private final int ID;
 
 
-    public Person(int id) {
-        this.ID = id;
+    public Person() {
+        this.ID = ++INC_ID;
     }
 
     public class Passport {
@@ -63,8 +62,8 @@ public class Person {
 
     @Override
     public String toString() {
-        String person =  "Person ID " +
-               ID + ", name='" + name + '\'' +
+        String person = "Person ID " +
+                ID + ", name='" + name + '\'' +
                 ", age=" + age +
                 ", passportSeries=" + passport.passportSeries +
                 ", passportNumber='" + passport.passportNumber + '\'' +
@@ -72,11 +71,10 @@ public class Person {
                 ", city='" + city + '\'';
 
 
-        try(FileWriter fileWriter = new FileWriter(OUTPUT_FILE_PATH);
-            BufferedWriter writer = new BufferedWriter(fileWriter) ) {
+        try (FileWriter fileWriter = new FileWriter(OUTPUT_FILE_PATH);
+             BufferedWriter writer = new BufferedWriter(fileWriter)) {
             writer.write(person);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
@@ -88,11 +86,11 @@ public class Person {
     }
 
     public void setPassport(String number, String series, Date date) {
-        this.passport = new Passport(number,series,date);
+        this.passport = new Passport(number, series, date);
     }
 
     public String getPassport() {
-        return passport.getPassportNumber()+passport.getPassportSeries();
+        return passport.getPassportNumber() + passport.getPassportSeries();
     }
 
     public String getName() {
