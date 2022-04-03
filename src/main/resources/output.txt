@@ -1,0 +1,1 @@
+Person ID 12, name='Владислава', age=43, passportSeries=5011, passportNumber='567909', passportIssueDate=12/08/14, city='Бердск'
