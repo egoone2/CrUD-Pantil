@@ -1,8 +1,8 @@
-package com.javarush.ava111.Service;
+package com.osokin.service.jmx;
 
 import java.text.ParseException;
 
-public interface AdminMBean {
+public interface AdminPageMBean {
     public void sendRequest(String params) throws ParseException;
 
     public int personsAmount();

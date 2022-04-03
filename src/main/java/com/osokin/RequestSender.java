@@ -1,8 +1,12 @@
-package com.javarush.ava111;
+package com.osokin;
 
-import com.javarush.ava111.Dto.*;
-import com.javarush.ava111.Service.DtoConverter;
-import com.javarush.ava111.Service.PersonService;
+import com.osokin.dto.CreateDto;
+import com.osokin.dto.DeleteDto;
+import com.osokin.dto.ReadDto;
+import com.osokin.service.DtoConverter;
+import com.osokin.service.PersonService;
+import com.osokin.dto.UpdateDto;
+import com.osokin.service.jmx.AdminPage;
 
 import java.text.ParseException;
 import java.util.logging.Logger;
@@ -10,7 +14,6 @@ import java.util.logging.Logger;
 
 public class RequestSender {
     private static Logger logger = Logger.getLogger(RequestSender.class.getName());
-    private String params;
 
     public RequestSender() {
 
@@ -23,6 +26,7 @@ public class RequestSender {
         switch (paramsArr[0]) {
             case ("create"):
                 CreateDto createDto = DtoConverter.createDto(paramsArr);
+//                wrapWithTimer ((), AdminPage.isEnabled())
                 personService.createPerson(createDto);
                 break;
             case ("update"):
@@ -47,11 +51,7 @@ public class RequestSender {
         }
     }
 
-    public String getParam() {
-        return params;
-    }
+    private void wrapWithTimer(boolean isNeedTimer) {
 
-    public void setParam(String param) {
-        this.params = param;
     }
 }

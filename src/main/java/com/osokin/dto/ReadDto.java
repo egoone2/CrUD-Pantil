@@ -1,10 +1,7 @@
-package com.javarush.ava111.Dto;
+package com.osokin.dto;
 
 
-
-
-
-public class DeleteDto {
+public class ReadDto {
     private int ID;
 
     public int getID() {

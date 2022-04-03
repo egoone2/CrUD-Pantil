@@ -1,7 +1,8 @@
-package com.javarush.ava111.Service;
+package com.osokin.service;
 
-import com.javarush.ava111.Dto.*;
-import com.javarush.ava111.Person;
+import com.osokin.config.ApplicationSettings;
+import com.osokin.dto.*;
+import com.osokin.Person;
 
 
 import java.io.BufferedWriter;
@@ -14,10 +15,10 @@ import java.util.logging.Logger;
 
 public class PersonService {
 
-    private static Logger logger = Logger.getLogger(PersonService.class.getName());
+    private static final Logger logger = Logger.getLogger(PersonService.class.getName());
     private static PersonService INSTANCE;
 
-    private HashMap<Integer, Person> repository = new HashMap<>();
+    private final HashMap<Integer, Person> repository = new HashMap<>();
 
     private PersonService() {
 
@@ -32,6 +33,7 @@ public class PersonService {
     }
 
     public void createPerson(CreateDto dto) throws ParseException {
+//        Thread.sleep(10000);
         Person person = new Person();
         person.setName(dto.getName());
         person.setAge(dto.getAge());
@@ -76,11 +78,9 @@ public class PersonService {
         }
     }
 
-
     public void printPersons() {
         repository.forEach((name, person) -> System.out.println(person));
     }
-
 
     public int personsAmount() {
         return repository.size();

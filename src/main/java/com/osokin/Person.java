@@ -1,14 +1,12 @@
-package com.javarush.ava111;
+package com.osokin;
 
-import java.io.BufferedReader;
+import com.osokin.config.ApplicationSettings;
+import com.osokin.service.Util;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
-
-
-import static com.javarush.ava111.Service.Util.*;
-import static com.javarush.ava111.Service.ApplicationSettings.*;
 
 public class Person {
 
@@ -67,11 +65,11 @@ public class Person {
                 ", age=" + age +
                 ", passportSeries=" + passport.passportSeries +
                 ", passportNumber='" + passport.passportNumber + '\'' +
-                ", passportIssueDate=" + formatter.format(passport.passportIssueDate) +
+                ", passportIssueDate=" + Util.formatter.format(passport.passportIssueDate) +
                 ", city='" + city + '\'';
 
 
-        try (FileWriter fileWriter = new FileWriter(OUTPUT_FILE_PATH);
+        try (FileWriter fileWriter = new FileWriter(ApplicationSettings.OUTPUT_FILE_PATH);
              BufferedWriter writer = new BufferedWriter(fileWriter)) {
             writer.write(person);
         } catch (IOException e) {

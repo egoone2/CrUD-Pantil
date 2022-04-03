@@ -1,9 +1,7 @@
-package com.javarush.ava111.Dto;
+package com.osokin.dto;
 
 
-import java.util.Date;
-
-public class ReadDto {
+public class DeleteDto {
     private int ID;
 
     public int getID() {

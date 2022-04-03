@@ -1,27 +1,20 @@
-package com.javarush.ava111;
+package com.osokin;
 
-import com.javarush.ava111.Service.Admin;
-import com.javarush.ava111.Service.PersonService;
+import com.osokin.service.jmx.AdminPage;
+import com.osokin.config.ApplicationSettings;
 
 import java.io.*;
 import java.text.ParseException;
-import java.lang.management.ManagementFactory;
 
 import javax.management.*;
-
-
-import static com.javarush.ava111.Service.ApplicationSettings.*;
 
 public class Solution {
 
     public static void main(String[] args) throws InterruptedException, NotCompliantMBeanException, InstanceAlreadyExistsException, MalformedObjectNameException, MBeanRegistrationException {
-        String line;
         RequestSender requestSender = new RequestSender();
+        AdminPage.init();
 
-        Admin admin = new Admin();
-        admin.init();
-
-        try (FileReader fileReader = new FileReader(FILE_PATH);
+        try (FileReader fileReader = new FileReader(ApplicationSettings.FILE_PATH);
              BufferedReader reader = new BufferedReader(fileReader)) {
             while (reader.ready()) {
                 requestSender.sendRequest(reader.readLine());
@@ -32,8 +25,9 @@ public class Solution {
 
         System.out.println("Waiting forever...");
         Thread.sleep(Long.MAX_VALUE);
-
-
+        //TODO 1.Таймер запросов и показфвать среднее время в jmx(для каждого запроса)
+        //TODO 2. Сделать тумблер для отключения фичи 1.
+        //TODO 3. Сделать отправку через потоки.
     }
 
 }

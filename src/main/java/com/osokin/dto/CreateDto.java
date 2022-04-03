@@ -1,4 +1,4 @@
-package com.javarush.ava111.Dto;
+package com.osokin.dto;
 
 
 import java.util.Date;
